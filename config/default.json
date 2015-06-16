@@ -1,0 +1,12 @@
+{
+  "app": {
+    "port": 3000
+  },
+  "dbConfig": {
+    "host": "localhost",
+    "user": "root",
+    "password": "",
+    "database": "test"
+  },
+  "exceptions": ["favicon.ico"]
+}
