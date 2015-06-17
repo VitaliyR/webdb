@@ -12,10 +12,10 @@ router.get('/', function(req, res){
   });
 });
 
-router.get('/:query', function(req, res) {
-  var query = req.params.query;
+router.get('/:report', function(req, res) {
+  var report = req.params.report;
 
-  req.query('SELECT * FROM queries WHERE id=? AND isReport = true', [query], function (err, rows, fields) {
+  req.query('SELECT * FROM queries WHERE id=? AND isReport = true', [report], function (err, rows, fields) {
     res.respond({
       fields: fields,
       tables: rows,
@@ -24,15 +24,14 @@ router.get('/:query', function(req, res) {
   });
 });
 
-router.get('/:query/:id', function (req, res) {
-  var query = req.params.query;
-  var id = req.params.id;
+router.get('/:report/run', function (req, res) {
+  var report = req.params.report;
 
-  if (!id){
+  if (!report){
     return res.respond(404);
   }
 
-  req.query('SELECT * FROM queries WHERE `id` = ? AND isReport = true', [id], function (err, rows, fields) {
+  req.query('SELECT * FROM queries WHERE `id` = ? AND isReport = true', [report], function (err, rows, fields) {
     var row = rows[0];
     req.query(row.query, function(err, queriedRows, queriedFields){
       res.respond({
@@ -44,11 +43,11 @@ router.get('/:query/:id', function (req, res) {
   });
 });
 
-router.post('/:table', function (req, res) {
+router.post('/:report', function (req, res) {
 });
-router.put('/:table/:id', function (req, res) {
+router.put('/:report/:id', function (req, res) {
 });
-router.delete('/:table/:id', function (req, res) {
+router.delete('/:report/:id', function (req, res) {
 });
 
 module.exports = function(){

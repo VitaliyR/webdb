@@ -24,8 +24,7 @@ router.get('/:query', function(req, res) {
   });
 });
 
-router.get('/:query/:id', function (req, res) {
-  var query = req.params.query;
+router.get('/:query/run', function (req, res) {
   var id = req.params.id;
 
   if (!id){
@@ -44,11 +43,11 @@ router.get('/:query/:id', function (req, res) {
   });
 });
 
-router.post('/:table', function (req, res) {
+router.post('/:query', function (req, res) {
 });
-router.put('/:table/:id', function (req, res) {
+router.put('/:query/:id', function (req, res) {
 });
-router.delete('/:table/:id', function (req, res) {
+router.delete('/:query/:id', function (req, res) {
 });
 
 module.exports = function(){

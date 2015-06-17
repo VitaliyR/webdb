@@ -1,13 +1,15 @@
 <div class="site-container">
 
-    <div class="sidebar">
-        <ul>
-          {{#each table in tables}}
-              <li>{{#link-to 'table' table.name}}{{table.name}}{{/link-to}}</li>
-          {{/each}}
-        </ul>
-    </div>
+  <div class="sidebar">
+      <ul>
+          <li>{{#link-to 'tables'}}Tables{{/link-to}}</li>
+          <li>{{#link-to 'queries'}}Queries{{/link-to}}</li>
+          <li>{{#link-to 'reports'}}Reports{{/link-to}}</li>
+      </ul>
+  </div>
 
-  {{outlet}}
+  <div class="content">
+      {{outlet}}
+  </div>
 
 </div>
