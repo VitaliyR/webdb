@@ -1,9 +1,13 @@
-<div class="sidebar">
-    <ul>
-      {{#each table in model}}
-        haha
-      {{/each}}
-    </ul>
-</div>
+<div class="site-container">
 
-{{outlet}}
+    <div class="sidebar">
+        <ul>
+          {{#each table in tables}}
+              <li>{{#link-to 'table' table.name}}{{table.name}}{{/link-to}}</li>
+          {{/each}}
+        </ul>
+    </div>
+
+  {{outlet}}
+
+</div>
