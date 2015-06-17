@@ -8,5 +8,7 @@
     "password": "",
     "database": "test"
   },
-  "exceptions": ["favicon.ico"]
+  "tables": {
+    "exceptions": ["queries"]
+  }
 }
