@@ -2,7 +2,7 @@ var express = require('express');
 var router = express.Router();
 var config;
 
-router.get('/', function(req, res){
+router.get('/', function(req, res, next){
   var exceptions = config.get('exceptions');
 
   req.connection.query('SHOW TABLES', function(err, rows, fields){
@@ -23,22 +23,24 @@ router.get('/', function(req, res){
       tables: tables,
       length: tables.length
     });
+    next();
   });
 });
 
-router.get('/:table', function(req, res) {
+router.get('/:table', function(req, res, next) {
   var table = req.params.table;
 
   req.query('SELECT * FROM ' + table + ' ORDER BY id', function (err, rows, fields) {
     res.respond({
       fields: fields,
-      tables: rows,
+      rows: rows,
       length: rows ? rows.length : 0
     });
+    next();
   });
 });
 
-router.get('/:table/:id', function (req, res) {
+router.get('/:table/:id', function (req, res, next) {
   var table = req.params.table;
   var id = req.params.id;
 
@@ -49,9 +51,10 @@ router.get('/:table/:id', function (req, res) {
   req.query('SELECT * FROM ' + table + ' WHERE `id` = ?', [id], function (err, rows, fields) {
     res.respond({
       fields: fields,
-      values: rows,
+      rows: rows,
       length: rows ? rows.length : 0
     });
+    next();
   });
 });
 

@@ -6,9 +6,15 @@ var log = require('winston');
 var connectionPool = mysql.createPool(config.get('dbConfig'));
 
 
-app.use(require('./lib/auth'));
+app.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
 
-app.use(require('./lib/helpers.js'));
+app.use(require('./lib/auth')(config, log));
+
+app.use(require('./lib/helpers.js')(log));
 
 app.use(function getConnectionPool(req, res, next){
   connectionPool.getConnection(function (err, connection) {
@@ -31,6 +37,13 @@ app.use('/tables', require('./routes/tables')(config.get('tables')));
 app.use('/queries', require('./routes/queries')());
 app.use('/reports', require('./routes/reports')());
 
+app.use(function(req, res, next){
+  if (req.connection){
+    req.connection.release();
+  }
+
+  next();
+});
 
 var appPort = config.get('app.port');
 app.listen(appPort, function () {

@@ -1,0 +1,21 @@
+<table class="hoverable">
+    <thead>
+    <tr>
+      {{#each data.fields key="name" as |field|}}
+          <th>{{field.name}}</th>
+      {{/each}}
+    </tr>
+    </thead>
+
+    <tbody>
+      {{#each row in data.rows}}
+        <tr>
+            {{#each-in row as |key value|}}
+              <td>
+                  {{value}}
+              </td>
+            {{/each-in}}
+        </tr>
+      {{/each}}
+    </tbody>
+</table>
