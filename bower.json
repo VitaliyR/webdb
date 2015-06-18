@@ -12,7 +12,9 @@
     "jquery": "^2.1.4",
     "loader.js": "ember-cli/loader.js#3.2.0",
     "qunit": "~1.17.1",
-    "normalize.css": "~3.0.3",
-    "materialize": "~0.96.1"
+    "materialize": "~0.96.1",
+    "antiscroll": "git://github.com/azirbel/antiscroll.git#90391fb371c7be769bc32e7287c5271981428356",
+    "jquery-mousewheel": "~3.1.4",
+    "jquery-ui": "~1.11.4"
   }
 }

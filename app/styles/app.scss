@@ -1,6 +1,13 @@
 @import "_sidebar";
 
-div.site-container {
-  width: 900px;
-  margin: 0 auto;
+.nav-wrapper {
+  margin-left: 20px;
+
+  @media (max-width: 992px) {
+    margin-left: auto;
+  }
+}
+
+.medium {
+  font-size: 22px;
 }

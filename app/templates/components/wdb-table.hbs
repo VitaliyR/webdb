@@ -4,18 +4,38 @@
       {{#each data.fields key="name" as |field|}}
           <th>{{field.name}}</th>
       {{/each}}
+      {{#if editable}}
+        <th></th>
+        <th></th>
+      {{/if}}
     </tr>
     </thead>
 
     <tbody>
-      {{#each row in data.rows}}
+      {{#each data.rows as |row rowIndex|}}
         <tr>
-            {{#each-in row as |key value|}}
+            {{#each data.fields as |field fieldIndex|}}
               <td>
-                  {{value}}
+                  {{input value=(get field 'name')}}
               </td>
-            {{/each-in}}
+            {{/each}}
+
+            {{#if editable}}
+              <td>
+                  <a class="medium mdi-action-done" {{action 'save' row}}></a>
+              </td>
+              <td>
+                {{#link-to 'tables.table.remove' row.ID classNames='medium mdi-action-highlight-remove'}}{{/link-to}}
+              </td>
+            {{/if}}
         </tr>
       {{/each}}
+      {{#if editable}}
+        <tr>
+            <td colspan="9999" class="center">
+                <button class="waves-effect waves-light btn" {{action 'add'}}>Додати</button>
+            </td>
+        </tr>
+      {{/if}}
     </tbody>
 </table>

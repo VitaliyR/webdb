@@ -1,10 +1,15 @@
 <div class="row site-container">
+    <nav>
+        <div class="nav-wrapper">
+            <a href="/" class="brand-logo">WebDB</a>
+        </div>
+    </nav>
 
     <div class="col s3 teal lighten-5 sidebar">
         <ul>
-            <li>{{#link-to 'tables'}}Tables{{/link-to}}</li>
-            <li>{{#link-to 'queries'}}Queries{{/link-to}}</li>
-            <li>{{#link-to 'reports'}}Reports{{/link-to}}</li>
+            <li class="center">{{#link-to 'tables' classNames='waves-effect waves-light btn'}}Таблиці{{/link-to}}</li>
+            <li class="center">{{#link-to 'queries'classNames='waves-effect waves-light btn'}}Запити{{/link-to}}</li>
+            <li class="center">{{#link-to 'reports' classNames='waves-effect waves-light btn'}}Звіти{{/link-to}}</li>
         </ul>
     </div>
 

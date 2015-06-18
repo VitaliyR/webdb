@@ -1,0 +1,18 @@
+<div class="modal-content">
+  <h4>
+      {{#if data.name}}
+        Редагувати таблицю
+      {{else}}
+        Створити таблицю
+      {{/if}}
+  </h4>
+  <div class="input-field col s6">
+      <input placeholder="Назва таблиці" id="table_name" type="text" class="validate">
+      <label for="table_name">Назва таблиці</label>
+  </div>
+  {{wdb-table data=data editable=true}}
+</div>
+<div class="modal-footer">
+    <a class=" modal-action modal-close waves-effect waves-green btn-flat" {{action 'save'}}>Підтвердити</a>
+    {{#link-to 'tables' classNames='modal-action modal-close waves-effect waves-red btn-flat'}}Відмінити{{/link-to}}
+</div>

@@ -9,6 +9,6 @@
     "database": "test"
   },
   "tables": {
-    "exceptions": ["queries"]
+    "exceptions": ["queries", "new"]
   }
 }

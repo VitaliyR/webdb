@@ -20,7 +20,17 @@ var app = new EmberApp();
 app.import('bower_components/materialize/dist/css/materialize.min.css');
 app.import('bower_components/materialize/dist/js/materialize.min.js');
 
-app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.ttf');
-app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff');
+app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.ttf', {
+  destDir: 'font/roboto'
+});
+app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff', {
+  destDir: 'font/roboto'
+});
+app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.ttf', {
+  destDir: 'font/material-design-icons'
+});
+app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff', {
+  destDir: 'font/material-design-icons'
+});
 
 module.exports = app.toTree();
