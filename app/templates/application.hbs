@@ -1,15 +1,16 @@
-<div class="site-container">
+<div class="row site-container">
 
-  <div class="sidebar">
-      <ul>
-          <li>{{#link-to 'tables'}}Tables{{/link-to}}</li>
-          <li>{{#link-to 'queries'}}Queries{{/link-to}}</li>
-          <li>{{#link-to 'reports'}}Reports{{/link-to}}</li>
-      </ul>
-  </div>
+    <div class="col s3 teal lighten-5 sidebar">
+        <ul>
+            <li>{{#link-to 'tables'}}Tables{{/link-to}}</li>
+            <li>{{#link-to 'queries'}}Queries{{/link-to}}</li>
+            <li>{{#link-to 'reports'}}Reports{{/link-to}}</li>
+        </ul>
+    </div>
 
-  <div class="content">
+    <div class="col s9 blue lighten-5 content">
+        Hello
       {{outlet}}
-  </div>
+    </div>
 
 </div>

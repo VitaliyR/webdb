@@ -6,20 +6,22 @@ router.get('/', function(req, res){
   var exceptions = config.get('exceptions');
 
   req.connection.query('SHOW TABLES', function(err, rows, fields){
-    var tables;
+    var tables = [];
 
     if (rows){
       var field = fields[0].name;
 
-      tables = rows.map(function(row){
-        return exceptions.indexOf(row[field]) !== -1;
+      rows.forEach(function(row){
+        if (exceptions.indexOf(row[field]) === -1){
+          tables.push(row[field]);
+        }
       });
     }
 
     res.respond({
       fields: fields,
       tables: tables,
-      length: tables ? tables.length : 0
+      length: tables.length
     });
   });
 });

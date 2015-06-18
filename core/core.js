@@ -6,9 +6,9 @@ var log = require('winston');
 var connectionPool = mysql.createPool(config.get('dbConfig'));
 
 
-app.use(require('lib/auth'));
+app.use(require('./lib/auth'));
 
-app.use(require('lib/helpers'));
+app.use(require('./lib/helpers.js'));
 
 app.use(function getConnectionPool(req, res, next){
   connectionPool.getConnection(function (err, connection) {
@@ -27,9 +27,9 @@ app.use(function getConnectionPool(req, res, next){
   });
 });
 
-app.use('/tables', require('routes/tables')(config.get('tables')));
-app.use('/queries', require('routes/queries')());
-app.use('/reports', require('routes/reports')());
+app.use('/tables', require('./routes/tables')(config.get('tables')));
+app.use('/queries', require('./routes/queries')());
+app.use('/reports', require('./routes/reports')());
 
 
 var appPort = config.get('app.port');

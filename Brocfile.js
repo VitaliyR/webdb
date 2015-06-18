@@ -17,4 +17,10 @@ var app = new EmberApp();
 // please specify an object with the list of modules as keys
 // along with the exports of each module as its value.
 
+app.import('bower_components/materialize/dist/css/materialize.min.css');
+app.import('bower_components/materialize/dist/js/materialize.min.js');
+
+app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.ttf');
+app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff');
+
 module.exports = app.toTree();
