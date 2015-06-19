@@ -12,19 +12,14 @@ export default Ember.Component.extend({
         obj[field.name] = '';
       });
 
+      obj['_id'] = (new Date).getTime();
+
       this.get('data').rows.pushObject(obj);
     },
 
-    save (row) {
-      var fields = this.get('data.fields');
-
-      fields.forEach(function(field){
-        row
-      });
-    },
-
-    remove () {
-
+    remove (row) {
+      var rows = this.get('data.rows');
+      rows.removeObject(row);
     }
 
   }

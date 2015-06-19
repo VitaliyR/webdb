@@ -13,9 +13,6 @@ export default Ember.Route.extend({
   },
 
   setupController (controller, model) {
-    for (var i = 0; i < model.rows.length; i++){
-      //model.rows[i] = Ember.Object.extend(model.rows[i]).create();
-    }
     controller.set('model', model);
   }
 

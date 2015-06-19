@@ -26,10 +26,16 @@ app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.ttf', {
 app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff', {
   destDir: 'font/roboto'
 });
+app.import('bower_components/materialize/dist/font/roboto/Roboto-Regular.woff2', {
+  destDir: 'font/roboto'
+});
 app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.ttf', {
   destDir: 'font/material-design-icons'
 });
 app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff', {
+  destDir: 'font/material-design-icons'
+});
+app.import('bower_components/materialize/dist/font/material-design-icons/Material-Design-Icons.woff2', {
   destDir: 'font/material-design-icons'
 });
 

@@ -1,4 +1,5 @@
 var express = require('express');
+var generate_id = require('../lib/ids').generate_id;
 var router = express.Router();
 var config;
 
@@ -18,6 +19,9 @@ router.get('/', function(req, res, next){
       });
     }
 
+    generate_id(fields);
+    generate_id(tables);
+
     res.respond({
       fields: fields,
       tables: tables,
@@ -31,7 +35,11 @@ router.get('/:table', function(req, res, next) {
   var table = req.params.table;
 
   req.query('SELECT * FROM ' + table + ' ORDER BY id', function (err, rows, fields) {
+    generate_id(fields);
+    generate_id(rows);
+
     res.respond({
+      name: table,
       fields: fields,
       rows: rows,
       length: rows ? rows.length : 0
@@ -49,7 +57,11 @@ router.get('/:table/:id', function (req, res, next) {
   }
 
   req.query('SELECT * FROM ' + table + ' WHERE `id` = ?', [id], function (err, rows, fields) {
+    generate_id(fields);
+    generate_id(rows);
+
     res.respond({
+      name: table,
       fields: fields,
       rows: rows,
       length: rows ? rows.length : 0

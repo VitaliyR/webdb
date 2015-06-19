@@ -14,7 +14,7 @@ app.use(function(req, res, next) {
 
 app.use(require('./lib/auth')(config, log));
 
-app.use(require('./lib/helpers.js')(log));
+app.use(require('./lib/helpers')(log));
 
 app.use(function getConnectionPool(req, res, next){
   connectionPool.getConnection(function (err, connection) {

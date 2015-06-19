@@ -7,7 +7,7 @@
       {{/if}}
   </h4>
   <div class="input-field col s6">
-      <input placeholder="Назва таблиці" id="table_name" type="text" class="validate">
+      {{input value=data.name id="table_name" classNames="validate" type="text" placeholder="Назва таблиці"}}
       <label for="table_name">Назва таблиці</label>
   </div>
   {{wdb-table data=data editable=true}}

@@ -7,7 +7,9 @@ var Router = Ember.Router.extend({
 
 Router.map(function() {
   this.route('tables', function() {
-    this.route('table', { path: ':table' });
+    this.route('table', { path: ':table' }, function(){
+      this.route('edit')
+    });
     this.route('new');
   });
   this.route('queries');

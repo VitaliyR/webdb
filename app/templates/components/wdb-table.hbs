@@ -6,26 +6,26 @@
       {{/each}}
       {{#if editable}}
         <th></th>
-        <th></th>
       {{/if}}
     </tr>
     </thead>
 
     <tbody>
-      {{#each data.rows as |row rowIndex|}}
+      {{#each data.rows key="_id" as |row rowIndex|}}
         <tr>
-            {{#each data.fields as |field fieldIndex|}}
-              <td>
-                  {{input value=(get field 'name')}}
-              </td>
+            {{#each data.fields key="_id" as |field fieldIndex|}}
+              {{#if editable}}
+                <td>
+                  {{wdb-input data=row field=field.name collection=data.rows}}
+                </td>
+              {{else}}
+                {{get row field.name}}
+              {{/if}}
             {{/each}}
 
             {{#if editable}}
               <td>
-                  <a class="medium mdi-action-done" {{action 'save' row}}></a>
-              </td>
-              <td>
-                {{#link-to 'tables.table.remove' row.ID classNames='medium mdi-action-highlight-remove'}}{{/link-to}}
+                <a class="medium mdi-action-highlight-remove" {{action 'remove' row}}></a>
               </td>
             {{/if}}
         </tr>
