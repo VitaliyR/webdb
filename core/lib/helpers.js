@@ -45,9 +45,9 @@ module.exports = function (log){
               err: err.code
             }
           });
+        }else{
+          callback.apply(this, arguments);
         }
-
-        callback.apply(this, arguments);
       });
 
       req.connection.query.apply(req.connection, args);

@@ -2,17 +2,18 @@ var express = require('express');
 var router = express.Router();
 var config;
 
-router.get('/', function(req, res){
+router.get('/', function(req, res, next){
   req.connection.query('SELECT id, name FROM queries WHERE isReport = true', function(err, rows, fields){
     res.respond({
       fields: fields,
       tables: rows,
       length: rows ? rows.length : 0
     });
+    next();
   });
 });
 
-router.get('/:report', function(req, res) {
+router.get('/:report', function(req, res, next) {
   var report = req.params.report;
 
   req.query('SELECT * FROM queries WHERE id=? AND isReport = true', [report], function (err, rows, fields) {
@@ -21,10 +22,11 @@ router.get('/:report', function(req, res) {
       tables: rows,
       length: rows ? rows.length : 0
     });
+    next();
   });
 });
 
-router.get('/:report/run', function (req, res) {
+router.get('/:report/run', function (req, res, next) {
   var report = req.params.report;
 
   if (!report){
@@ -39,6 +41,7 @@ router.get('/:report/run', function (req, res) {
         values: queriedRows,
         length: queriedRows ? queriedRows.length : 0
       });
+      next();
     });
   });
 });

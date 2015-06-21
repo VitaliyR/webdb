@@ -20,13 +20,13 @@
       {{#each data.rows key="_id" as |row rowIndex|}}
         <tr>
             {{#each data.fields key="_id" as |field fieldIndex|}}
-              {{#if editable}}
-                <td>
-                  {{wdb-input data=row field=field.name collection=data.rows}}
-                </td>
-              {{else}}
-                {{get row field.name}}
-              {{/if}}
+              <td>
+                {{#if editable}}
+                    {{wdb-input data=row field=field.name collection=data.rows}}
+                {{else}}
+                  {{get row field.name}}
+                {{/if}}
+              </td>
             {{/each}}
 
             {{#if editable}}

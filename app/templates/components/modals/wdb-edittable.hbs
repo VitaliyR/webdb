@@ -6,9 +6,11 @@
         Створити таблицю
       {{/if}}
   </h4>
-  <div class="input-field col s6">
-      {{input value=data.name id="table_name" classNames="validate" type="text" placeholder="Назва таблиці"}}
-      <label for="table_name">Назва таблиці</label>
+  <div class="row">
+    <div class="input-field col s6">
+        {{input value=data.name id="table_name" classNames="validate" type="text" placeholder="Назва таблиці"}}
+        <label for="table_name">Назва таблиці</label>
+    </div>
   </div>
   {{wdb-table data=data editable=true}}
 </div>

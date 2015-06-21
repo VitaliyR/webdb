@@ -3,6 +3,7 @@ var app = express();
 var mysql = require('mysql');
 var config = require('config');
 var log = require('winston');
+var bodyParser = require('body-parser');
 var connectionPool = mysql.createPool(config.get('dbConfig'));
 
 
@@ -33,8 +34,11 @@ app.use(function getConnectionPool(req, res, next){
   });
 });
 
+app.use(bodyParser.json()); // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
 app.use('/tables', require('./routes/tables')(config.get('tables')));
-app.use('/queries', require('./routes/queries')());
+app.use('/queries', require('./routes/queries')(config.get('tables')));
 app.use('/reports', require('./routes/reports')());
 
 app.use(function(req, res, next){

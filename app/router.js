@@ -13,7 +13,10 @@ Router.map(function() {
     });
     this.route('new');
   });
-  this.route('queries');
+  this.route('queries', function() {
+    this.route('query', { path: ':query_id' });
+    this.route('new');
+  });
   this.route('reports');
 });
 

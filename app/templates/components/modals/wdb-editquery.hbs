@@ -1,0 +1,32 @@
+<div class="modal-content">
+    <h4>
+      {{#if new}}
+          Створити запит
+      {{else}}
+          Редагувати запит
+      {{/if}}
+      <h5 class="red-text">{{error}}</h5>
+    </h4>
+    <div class="row">
+        <div class="input-field col s12">
+          {{input value=query.id id="query_id" classNames="validate" type="text" placeholder="ID запиту" disabled=true}}
+            <label for="query_id">ID запиту</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+          {{input value=query.name id="query_name" classNames="validate" type="text" placeholder="Назва запиту"}}
+            <label for="query_name">Назва запиту</label>
+        </div>
+    </div>
+    <div class="row">
+        <div class="input-field col s12">
+          {{textarea value=query.querystring id="query_querystring" classNames="materialize-textarea"}}
+            <label for="query_querystring">Запит</label>
+        </div>
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="modal-action waves-effect waves-green btn-flat" {{action 'save'}}>Підтвердити</a>
+  {{#link-to 'queries' classNames='modal-action modal-close waves-effect waves-red btn-flat'}}Відмінити{{/link-to}}
+</div>
