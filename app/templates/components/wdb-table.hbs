@@ -2,7 +2,13 @@
     <thead>
     <tr>
       {{#each data.fields key="name" as |field|}}
-          <th>{{field.name}}</th>
+          <th>
+            {{#if field.translation}}
+              {{field.translation}}
+            {{else}}
+              {{field.name}}
+            {{/if}}
+          </th>
       {{/each}}
       {{#if editable}}
         <th></th>
@@ -39,3 +45,13 @@
       {{/if}}
     </tbody>
 </table>
+{{#if data.page}}
+<div class="center">
+  {{#unless (eq data.page 1)}}
+    {{link-to 'Попередня'  (query-params page=prevPage) classNames='waves-effect waves-light btn'}}
+  {{/unless}}
+  {{#unless (eq data.page data.pagesAll)}}
+    {{link-to 'Наступна' (query-params page=nextPage) classNames='waves-effect waves-light btn'}}
+  {{/unless}}
+</div>
+{{/if}}

@@ -9,6 +9,7 @@
     "database": "test"
   },
   "tables": {
-    "exceptions": ["queries", "new"]
+    "exceptions": ["queries", "new"],
+    "limit": 10
   }
 }

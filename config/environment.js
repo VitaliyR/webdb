@@ -6,6 +6,7 @@ module.exports = function(environment) {
     environment: environment,
     baseURL: '/',
     apiURL: 'http://localhost:3000/',
+    limitRows: 10,
     locationType: 'auto',
     contentSecurityPolicy: {
       'connect-src': "localhost:3000",

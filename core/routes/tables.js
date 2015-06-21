@@ -33,19 +33,28 @@ router.get('/', function(req, res, next){
 
 router.get('/:table', function(req, res, next) {
   var table = req.params.table;
+  var page = parseInt(req.query.page) || 1;
+  var limit = config.get('limit');
 
-  req.query('SELECT * FROM ' + table + ' ORDER BY id', function (err, rows, fields) {
-    generate_id(fields);
-    generate_id(rows);
+  req.querySql('SELECT COUNT(*) AS count FROM ' + table, function(err, countRows){
+    req.querySql('SELECT * FROM ' + table + ' LIMIT ?, ?', [((page - 1) * limit), limit], function (err, rows, fields) {
+      generate_id(fields);
+      generate_id(rows);
 
-    res.respond({
-      name: table,
-      fields: fields,
-      rows: rows,
-      length: rows ? rows.length : 0
+      res.respond({
+        name: table,
+        fields: fields,
+        rows: rows,
+        length: rows ? rows.length : 0,
+        lengthAll: countRows[0].count,
+        page: page,
+        pagesAll: Math.ceil(countRows[0].count / limit)
+      });
+
+      next();
     });
-    next();
   });
+
 });
 
 router.get('/:table/:id', function (req, res, next) {
@@ -56,7 +65,7 @@ router.get('/:table/:id', function (req, res, next) {
     return res.respond(404);
   }
 
-  req.query('SELECT * FROM ' + table + ' WHERE `id` = ?', [id], function (err, rows, fields) {
+  req.querySql('SELECT * FROM ' + table + ' WHERE `id` = ?', [id], function (err, rows, fields) {
     generate_id(fields);
     generate_id(rows);
 

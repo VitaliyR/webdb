@@ -21,7 +21,7 @@ module.exports = function (log){
       res.send(response);
     };
 
-    req.query = function () {
+    req.querySql = function () {
       if (!req.connection) {
         log.error('No connection while querying the DB');
         return res.respond(500);

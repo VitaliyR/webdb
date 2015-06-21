@@ -8,7 +8,8 @@ var Router = Ember.Router.extend({
 Router.map(function() {
   this.route('tables', function() {
     this.route('table', { path: ':table' }, function(){
-      this.route('edit')
+      this.route('edit');
+      this.route('remove');
     });
     this.route('new');
   });

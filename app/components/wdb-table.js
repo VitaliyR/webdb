@@ -2,6 +2,14 @@ import Ember from 'ember';
 
 export default Ember.Component.extend({
 
+  _pageChanged: function(){
+    var page = this.get('data.page');
+    if (page){
+      this.set('nextPage', this.get('data.page') + 1);
+      this.set('prevPage', this.get('data.page') - 1);
+    }
+  }.observes('data.page').on('init'),
+
   actions: {
 
     add () {
