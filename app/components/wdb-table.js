@@ -23,11 +23,19 @@ export default Ember.Component.extend({
       obj['_id'] = (new Date).getTime();
 
       this.get('data').rows.pushObject(obj);
+
+      this.sendAction('rowAdded', obj);
     },
 
     remove (row) {
       var rows = this.get('data.rows');
       rows.removeObject(row);
+
+      this.sendAction('rowRemoved', row);
+    },
+
+    valueChanged (row, field) {
+      this.sendAction('rowChanged', row, field);
     }
 
   }

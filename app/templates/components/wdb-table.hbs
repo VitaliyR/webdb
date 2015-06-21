@@ -22,7 +22,11 @@
             {{#each data.fields key="_id" as |field fieldIndex|}}
               <td>
                 {{#if editable}}
-                    {{wdb-input data=row field=field.name collection=data.rows}}
+                    {{#if (eq field.name 'ID')}}
+                      {{wdb-input data=row field=field.name collection=data.rows valueChanged='valueChanged' disabled=true}}
+                    {{else}}
+                      {{wdb-input data=row field=field.name collection=data.rows valueChanged='valueChanged'}}
+                    {{/if}}
                 {{else}}
                   {{get row field.name}}
                 {{/if}}

@@ -18,6 +18,7 @@ export default Ember.Component.extend({
   actions: {
     valueChanged () {
       this.set('value', this.$().find('input').val());
+      this.sendAction('valueChanged', this.get('data'), this.get('field'));
     }
   }
 

@@ -9,8 +9,10 @@ var _getKV = function(row){
 
   for (var each in row){
     if (row.hasOwnProperty(each)){
-      fields.push(each);
-      values.push(row[each]);
+      if (each !== '_id' && each !== 'ID'){
+        fields.push(each);
+        values.push(row[each]);
+      }
     }
   }
 
@@ -212,7 +214,7 @@ router.post('/:table', function (req, res, next) {
   var table = req.params.table;
   var row = req.body.row;
 
-  if (!table || !row){
+  /*if (!table || !row){
     res.respond({
       meta: {
         result: 'error',
@@ -220,11 +222,17 @@ router.post('/:table', function (req, res, next) {
       }
     });
     return next();
-  }
+  }*/
 
-  var kv = _getKV(row);
+  /*var kv = _getKV(row);
 
-  req.querySql('INSERT INTO ' + table + ' (' + kv.fields.join(',') + ') VALUES (' + kv.values.join(',') + ')', function(err, rows){
+  for (var i = 0; i < kv.fields.length; i++){
+    kv.fields[i] = '`' + kv.fields[i] + '`';
+    kv.values[i] = '\'' + kv.values[i] + '\'';
+  }*/
+
+  //req.querySql('INSERT INTO ' + table + ' (' + kv.fields.join(',') + ') VALUES (' + kv.values.join(',') + ')', function(err, rows){
+  req.querySql('INSERT INTO ' + table + ' VALUES ()', function(err, rows){
     res.respond({
       status: rows
     });
@@ -237,6 +245,7 @@ router.post('/:table', function (req, res, next) {
  */
 router.put('/:table/:id', function (req, res, next) {
   var table = req.params.table;
+  var id = req.params.id;
   var row = req.body.row;
 
   if (!table || !row){
@@ -252,14 +261,15 @@ router.put('/:table/:id', function (req, res, next) {
   var kv = _getKV(row);
   var query = 'UPDATE ' + table + ' SET ';
   kv.fields.forEach(function(field, index){
-    var q = field + '=' + kv.values[index];
-    if (kv.fields.length - 1 !== index){
-      q += ', ';
+    if (field !== '_id' && field !== 'ID'){
+      var q = '`'+field+'`=\'' + kv.values[index] + '\',';
+      query += q;
     }
-    query.push(q);
   });
 
-  query += ' WHERE id=' + table;
+  query = query.substring(0, query.length-1);
+
+  query += ' WHERE ID=' + id;
 
   req.querySql(query, function(err, rows){
     res.respond({
@@ -275,6 +285,7 @@ router.put('/:table/:id', function (req, res, next) {
 router.delete('/:table/:id', function (req, res, next) {
   var table = req.params.table;
   var row = req.body.row;
+  var id = row.id || row.ID;
 
   if (!table || !row){
     res.respond({
@@ -286,7 +297,7 @@ router.delete('/:table/:id', function (req, res, next) {
     return next();
   }
 
-  req.querySql('DELETE FROM ' + table + ' WHERE id=?', [row.id], function(err, rows){
+  req.querySql('DELETE FROM ' + table + ' WHERE id=?', [id], function(err, rows){
     res.respond({
       status: rows
     });

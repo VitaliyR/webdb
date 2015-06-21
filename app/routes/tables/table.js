@@ -29,6 +29,43 @@ export default Ember.Route.extend({
   actions: {
     queryParamsDidChange: function(){
       this.refresh();
+    },
+
+    rowAdded (row) {
+      $.ajax('http://localhost:3000/tables/' + this.get('controller.model.name'), {
+        type: 'POST',
+        data: { row: row }
+      }).done(() => {
+        this.refresh();
+      });
+    },
+
+    rowChanged (row, field) {
+      var id = row.id || row.ID;
+      var data = {};
+      data[field] = row[field];
+      $.ajax('http://localhost:3000/tables/' + this.get('controller.model.name') + '/' + id, {
+        type: 'PUT',
+        data: {
+          table: this.get('controller.model.name'),
+          row: data
+        }
+      }).done(() => {
+        this.refresh();
+      });
+    },
+
+    rowRemoved (row) {
+      var id = row.id || row.ID;
+
+      $.ajax('http://localhost:3000/tables/' + this.get('controller.model.name') + '/' + id, {
+        type: 'DELETE',
+        data: {
+          row: row
+        }
+      }).done(() => {
+        this.refresh();
+      });
     }
   }
 
