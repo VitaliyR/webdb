@@ -13,7 +13,7 @@ You will need the following things properly installed on your computer.
 
 * Install NodeJS
 * Install MySQL Server
-* Import db.sql into database called 'test' (or change this in config/default.json)
+* `node core/import.js` - Import db.sql into database called 'test' (or change this in config/default.json)
 * `npm install`
 * `bower install`
 * `ember serve`
