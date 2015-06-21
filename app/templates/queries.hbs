@@ -8,8 +8,8 @@
                     {{#link-to "queries.query" query.id}}
                       {{query.name}}
                     {{/link-to}}
-                    {{#link-to 'tables.table.remove' table classNames='medium mdi-action-highlight-remove secondary-content'}}{{/link-to}}
-                    {{#link-to 'tables.table.edit' table classNames='medium mdi-image-edit secondary-content'}}{{/link-to}}
+                    {{#link-to 'queries.query.remove' query.id classNames='medium mdi-action-highlight-remove secondary-content'}}{{/link-to}}
+                    {{#link-to 'queries.query.edit' query.id classNames='medium mdi-image-edit secondary-content'}}{{/link-to}}
                   </div>
               </li>
           {{/each}}

@@ -1,0 +1,13 @@
+<div class="modal-content">
+    <h4>
+        Видалити запит {{query.name}}
+        <h5 class="red-text">{{error}}</h5>
+    </h4>
+    <div class="center">
+        Ви дійсно бажаєте видалити таблицю {{query.name}}?
+    </div>
+</div>
+<div class="modal-footer">
+    <a class="modal-action waves-effect waves-green btn-flat" {{action 'remove'}}>Підтвердити</a>
+  {{#link-to 'queries' classNames='modal-action modal-close waves-effect waves-red btn-flat'}}Відмінити{{/link-to}}
+</div>

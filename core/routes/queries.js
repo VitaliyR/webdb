@@ -50,7 +50,8 @@ router.get('/:query/run', function (req, res, next) {
           length: queriedRows ? queriedRows.length : 0,
           lengthAll: countRows[0].count,
           page: page,
-          pagesAll: Math.ceil(countRows[0].count / limit)
+          pagesAll: Math.ceil(countRows[0].count / limit),
+          query: row
         });
         next();
       });
@@ -79,14 +80,45 @@ router.post('/', function (req, res, next) {
 });
 
 router.post('/:query', function (req, res, next) {
-  var query = req.params.query;
-  next();
+  var query = req.body.query;
+
+  if (!query || (query && (!query.name || !query.querystring))){
+    res.respond({
+      meta: {
+        result: 'error',
+        err: 'Заповніть всі поля'
+      }
+    });
+    return next();
+  }
+
+  req.querySql('UPDATE queries SET name=?, querystring=? WHERE id=?', [query.name, query.querystring, query.id], function(err, rows){
+    res.respond({
+      status: rows
+    });
+    next();
+  });
 });
 
-router.put('/:query/:id', function (req, res) {
-});
+router.delete('/:query', function (req, res, next){
+  var query = req.body.query;
 
-router.delete('/:query/:id', function (req, res) {
+  if (!query.id){
+    res.respond({
+      meta: {
+        result: 'error',
+        err: 'Не надано ID запиту'
+      }
+    });
+    return next();
+  }
+
+  req.querySql('DELETE FROM queries WHERE id=?', [query.id], function(err, rows){
+    res.respond({
+      status: rows
+    });
+    next();
+  });
 });
 
 module.exports = function(cfg){

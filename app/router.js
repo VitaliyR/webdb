@@ -14,7 +14,10 @@ Router.map(function() {
     this.route('new');
   });
   this.route('queries', function() {
-    this.route('query', { path: ':query_id' });
+    this.route('query', { path: ':query_id' }, function() {
+      this.route('edit');
+      this.route('remove');
+    });
     this.route('new');
   });
   this.route('reports');

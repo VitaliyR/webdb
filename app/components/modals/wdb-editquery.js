@@ -24,13 +24,14 @@ export default Ember.Component.extend({
       }else{
         this.set('error', null);
 
-        $.ajax('http://localhost:3000/queries', {
+        $.ajax('http://localhost:3000/' + (this.get('new') ? 'queries' : ('queries/' + query.id)) , {
             type: 'POST',
             data: {query: query}
         }).done((response) => {
             if (response.meta.err){
               this.set('error', response.meta.err);
             }else{
+              this.set('error', null);
               this.transitionTo('queries');
             }
         });
