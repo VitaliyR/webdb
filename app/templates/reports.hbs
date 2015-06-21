@@ -8,15 +8,15 @@
                     {{#link-to "reports.report" report.id}}
                       {{report.name}}
                     {{/link-to}}
-                    {{#link-to 'queries.query.remove' query.id classNames='medium mdi-action-highlight-remove secondary-content'}}{{/link-to}}
-                    {{#link-to 'queries.query.edit' query.id classNames='medium mdi-image-edit secondary-content'}}{{/link-to}}
+                    {{#link-to 'reports.report.remove' report.id classNames='medium mdi-action-highlight-remove secondary-content'}}{{/link-to}}
+                    {{#link-to 'reports.report.edit' report.id classNames='medium mdi-image-edit secondary-content'}}{{/link-to}}
                   </div>
               </li>
           {{/each}}
         </ul>
     </div>
     <div class="center">
-      {{#link-to 'queries.new' classNames='waves-effect waves-light btn'}}Додати звіт{{/link-to}}
+      {{#link-to 'reports.new' classNames='waves-effect waves-light btn'}}Додати звіт{{/link-to}}
     </div>
 </div>
 

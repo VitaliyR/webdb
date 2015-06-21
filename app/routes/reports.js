@@ -8,6 +8,18 @@ export default Ember.Route.extend({
 
   setupController (controller, model) {
     controller.set('reports', model.reports);
+  },
+
+  actions: {
+    cancelEdit() {
+      this.transitionTo('reports');
+      this.refresh();
+    },
+
+    cancelRemove () {
+      this.transitionTo('reports');
+      this.refresh();
+    }
   }
 
 });

@@ -92,7 +92,12 @@ router.post('/:query', function (req, res, next) {
     return next();
   }
 
-  req.querySql('UPDATE queries SET name=?, querystring=? WHERE id=?', [query.name, query.querystring, query.id], function(err, rows){
+  if (query.isReport === 'false' || query.isReport === '0'){
+    query.isReport = false;
+  }
+  query.isReport = !!query.isReport;
+
+  req.querySql('UPDATE queries SET name=?, querystring=?, isReport=? WHERE id=?', [query.name, query.querystring, query.isReport, query.id], function(err, rows){
     res.respond({
       status: rows
     });

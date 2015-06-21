@@ -1,12 +1,3 @@
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8 */;
-/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
-/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
-/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
-
-
 # Dump of table Автомобілі
 # ------------------------------------------------------------
 
@@ -20,7 +11,7 @@ CREATE TABLE `Автомобілі` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Автомобілі` WRITE;
-/*!40000 ALTER TABLE `Автомобілі` DISABLE KEYS */;
+
 
 INSERT INTO `Автомобілі` (`ID`, `Виробник`, `Марка`, `Примітки`)
 VALUES
@@ -65,7 +56,7 @@ VALUES
 	(29,'Daewoo','Tico',''),
 	(42,'Ford','Transit','');
 
-/*!40000 ALTER TABLE `Автомобілі` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
@@ -83,7 +74,7 @@ CREATE TABLE `Диспетчери` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Диспетчери` WRITE;
-/*!40000 ALTER TABLE `Диспетчери` DISABLE KEYS */;
+
 
 INSERT INTO `Диспетчери` (`ID`, `ПІБ диспетчера`, `Дата зміни`, `Початок зміни`, `Кінець зміни`)
 VALUES
@@ -100,7 +91,7 @@ VALUES
 	(6,'Стельмах Олег Адамович','2012-04-17','16:00:00','00:00:00'),
 	(10,'Трунова Інна Олександрівна','2012-04-19','00:00:00','08:00:00');
 
-/*!40000 ALTER TABLE `Диспетчери` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
@@ -118,7 +109,7 @@ CREATE TABLE `Клієнти` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Клієнти` WRITE;
-/*!40000 ALTER TABLE `Клієнти` DISABLE KEYS */;
+
 
 INSERT INTO `Клієнти` (`ID`, `ПІБ клієнта`, `Марка автомобіля`, `Постійний клієнт`, `Примітки`)
 VALUES
@@ -148,7 +139,7 @@ VALUES
 	(16,'Чупіль Олександр Ярославович','BMW X1',1,''),
 	(6,'Яцків Дмитро Євгенович','BMW 5GT',1,'');
 
-/*!40000 ALTER TABLE `Клієнти` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
@@ -165,7 +156,7 @@ CREATE TABLE `Місця` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Місця` WRITE;
-/*!40000 ALTER TABLE `Місця` DISABLE KEYS */;
+
 
 INSERT INTO `Місця` (`Шифр`, `Поверх`, `Місце`, `Вільно`)
 VALUES
@@ -1370,7 +1361,7 @@ VALUES
 	('6-98',6,98,1),
 	('6-99',6,99,1);
 
-/*!40000 ALTER TABLE `Місця` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
@@ -1392,7 +1383,7 @@ CREATE TABLE `Облікова книга` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Облікова книга` WRITE;
-/*!40000 ALTER TABLE `Облікова книга` DISABLE KEYS */;
+
 
 INSERT INTO `Облікова книга` (`ID`, `Диспетчер`, `Дата постановки`, `Час постановки`, `Час послуги`, `ПІБ клієнта`, `Замовлена послуга`, `Сплачено повністю`, `Місце`)
 VALUES
@@ -1609,7 +1600,7 @@ VALUES
 	(214,'Запорожець Олександр Іванович','2012-04-10','22:22:00',9,'Ігнатенко Дмитро Сергійович','Тимчасова стоянка','101,25','2-74'),
 	(215,'Трунова Інна Олександрівна','2012-04-10','23:55:00',10,'Столярчук Андрій Ростиславович','Тимчасова стоянка','112,50','4-144');
 
-/*!40000 ALTER TABLE `Облікова книга` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
@@ -1627,7 +1618,7 @@ CREATE TABLE `Сервіси` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Сервіси` WRITE;
-/*!40000 ALTER TABLE `Сервіси` DISABLE KEYS */;
+
 
 INSERT INTO `Сервіси` (`ID`, `Назва сервісу`, `Вартість послуги`, `Почасова`, `Скидка для постійних`)
 VALUES
@@ -1638,7 +1629,7 @@ VALUES
 	(3,'Поточний ремонт','120,00',0,0),
 	(4,'Тимчасова стоянка','15,00',1,25);
 
-/*!40000 ALTER TABLE `Сервіси` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
@@ -1657,7 +1648,7 @@ CREATE TABLE `Скарги` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 LOCK TABLES `Скарги` WRITE;
-/*!40000 ALTER TABLE `Скарги` DISABLE KEYS */;
+
 
 INSERT INTO `Скарги` (`ID`, `ПІБ клієнта`, `Диспетчер`, `Дата скарги`, `Скарга`, `Задоволено`)
 VALUES
@@ -1672,14 +1663,14 @@ VALUES
 	(9,'Ігнатенко Дмитро Сергійович','Запорожець Олександр Іванович','2012-04-08','Відмова в охороні автомобіля',0),
 	(10,'Карбачевський Олексій Ілліч','Гладка Лариса Андріївна','2012-04-05','Побутове хамство',0);
 
-/*!40000 ALTER TABLE `Скарги` ENABLE KEYS */;
+
 UNLOCK TABLES;
 
 
 
-/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
-/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
-/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+
+
+
+
+
+

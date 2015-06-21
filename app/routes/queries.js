@@ -8,6 +8,18 @@ export default Ember.Route.extend({
 
   setupController (controller, model) {
     controller.set('queries', model.queries);
+  },
+
+  actions: {
+    cancelEdit() {
+      this.transitionTo('queries');
+      this.refresh();
+    },
+
+    cancelRemove () {
+      this.transitionTo('queries');
+      this.refresh();
+    }
   }
 
 });

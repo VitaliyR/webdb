@@ -21,7 +21,11 @@ Router.map(function() {
     this.route('new');
   });
   this.route('reports', function() {
-    this.route('report', { path: ':report_id' });
+    this.route('report', { path: ':report_id' }, function() {
+      this.route('edit');
+      this.route('remove');
+    });
+    this.route('new');
   });
 });
 

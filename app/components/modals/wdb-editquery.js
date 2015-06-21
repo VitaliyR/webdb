@@ -32,10 +32,15 @@ export default Ember.Component.extend({
               this.set('error', response.meta.err);
             }else{
               this.set('error', null);
-              this.transitionTo('queries');
+              this._actions.back.apply(this);
             }
         });
       }
+    },
+
+    back() {
+      this.$().closeModal();
+      this.sendAction('cancelEdit');
     }
   }
 

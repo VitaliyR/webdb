@@ -15,7 +15,7 @@ export default Ember.Component.extend({
       var query = this.get('query');
 
       $.ajax('http://localhost:3000/queries/' + query.id, {
-        data: query,
+        data: { query: query },
         type: 'DELETE'
       }).done((response) => {
         if (response.meta.err){
@@ -25,6 +25,11 @@ export default Ember.Component.extend({
           this.transitionTo('queries');
         }
       });
+    },
+
+    back () {
+      this.$().closeModal();
+      this.sendAction('cancelRemove');
     }
   }
 
