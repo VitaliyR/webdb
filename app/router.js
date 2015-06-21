@@ -20,7 +20,9 @@ Router.map(function() {
     });
     this.route('new');
   });
-  this.route('reports');
+  this.route('reports', function() {
+    this.route('report', { path: ':report_id' });
+  });
 });
 
 export default Router;

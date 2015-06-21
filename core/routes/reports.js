@@ -6,7 +6,7 @@ router.get('/', function(req, res, next){
   req.connection.query('SELECT id, name FROM queries WHERE isReport = true', function(err, rows, fields){
     res.respond({
       fields: fields,
-      tables: rows,
+      reports: rows,
       length: rows ? rows.length : 0
     });
     next();
@@ -19,7 +19,7 @@ router.get('/:report', function(req, res, next) {
   req.query('SELECT * FROM queries WHERE id=? AND isReport = true', [report], function (err, rows, fields) {
     res.respond({
       fields: fields,
-      tables: rows,
+      reports: rows,
       length: rows ? rows.length : 0
     });
     next();
